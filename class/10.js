@@ -18,7 +18,7 @@ var __extends = (this && this.__extends) || (function () {
         function Animation() {
         }
         Animation.prototype.getPos = function () {
-            return [100, 300];
+            return { x: 100, y: 300 };
         };
         return Animation;
     }());
