@@ -6,13 +6,20 @@
     };
   };
 
+  const musicDecorator: ClassDecorator = (target: Function) => {
+    target.prototype.playMusic = (): void => {
+      console.log("play music");
+    };
+  };
+
   @moveDecorator
+  @musicDecorator
   class Tank {
-    public getPosition(){
-        
-    }
+    public getPosition() {}
+    public playMusic() {}
   }
 
   const t = new Tank();
   console.log(<any>t.getPosition());
+  <any>t.playMusic();
 }

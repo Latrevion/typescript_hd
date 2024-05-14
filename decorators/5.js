@@ -12,13 +12,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
             return { x: 100, y: 200 };
         };
     };
+    const musicDecorator = (target) => {
+        target.prototype.playMusic = () => {
+            console.log("play music");
+        };
+    };
     let Tank = class Tank {
-        getPosition() {
-        }
+        getPosition() { }
+        playMusic() { }
     };
     Tank = __decorate([
-        moveDecorator
+        moveDecorator,
+        musicDecorator
     ], Tank);
     const t = new Tank();
     console.log(t.getPosition());
+    t.playMusic();
 }
