@@ -3,8 +3,8 @@
 
   const user:userType = {
     name: "luke",
-    isLogin: false,
-    permissions:['store']
+    isLogin: true,
+    permissions:['store','manage']
   };
 
   const AccessDecorator=(keys:string[]): MethodDecorator=>{
@@ -13,21 +13,24 @@
         propertyKey: string | symbol,
         descriptor: PropertyDescriptor
     ) => {
-        const method = descriptor.value;
-        const validate = ()=>{
-          return  keys.every(k=>{
-                return user.permissions.includes(k)
-            })
+        // const method = descriptor.value;
 
-        }
+        const validate = ()=>
+            keys.every(k=>{
+                return user.permissions.includes(k)
+        })
+
+        
 
         descriptor.value = () => {
             if (user.isLogin && validate()) {
-                return method();
-                
+                // return method();
+                alert('validate success')
+            }else{
+                alert('validate error')
+                // alert("please login in ");
+                // location.href = "login.html";
             }
-            alert("please login in ");
-            location.href = "login.html";
         };
 
     };
@@ -38,11 +41,11 @@
       console.log("show article");
     }
 
-    @AccessDecorator(['store','manager'])
+    @AccessDecorator(['store','manage'])
     store() {
       console.log("save article");
     }
   }
 
-  new Article().show();
+  new Article().store();
 }

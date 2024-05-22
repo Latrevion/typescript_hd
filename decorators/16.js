@@ -11,23 +11,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 {
     const user = {
         name: "luke",
-        isLogin: false,
-        permissions: ['store']
+        isLogin: true,
+        permissions: ['store', 'manage']
     };
     const AccessDecorator = (keys) => {
         return (target, propertyKey, descriptor) => {
-            const method = descriptor.value;
-            const validate = () => {
-                return keys.every(k => {
-                    return user.permissions.includes(k);
-                });
-            };
+            // const method = descriptor.value;
+            const validate = () => keys.every(k => {
+                return user.permissions.includes(k);
+            });
             descriptor.value = () => {
                 if (user.isLogin && validate()) {
-                    return method();
+                    // return method();
+                    alert('validate success');
                 }
-                alert("please login in ");
-                location.href = "login.html";
+                else {
+                    alert('validate error');
+                    // alert("please login in ");
+                    // location.href = "login.html";
+                }
             };
         };
     };
@@ -40,10 +42,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
         }
     }
     __decorate([
-        AccessDecorator(['store', 'manager']),
+        AccessDecorator(['store', 'manage']),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", void 0)
     ], Article.prototype, "store", null);
-    new Article().show();
+    new Article().store();
 }
