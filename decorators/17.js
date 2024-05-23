@@ -12,11 +12,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     const RequestDecorator = (url) => {
         return (target, propertyKey, descriptor) => {
             const method = descriptor.value;
-            new Promise(resolve => {
+            new Promise((resolve) => {
                 setTimeout(() => {
-                    resolve([{ name: 'luke' }, { name: 'john' }]);
+                    resolve([{ name: "luke" }, { name: "john" }]);
                 }, 2000);
-            }).then(user => {
+            }).then((user) => {
                 method(user);
             });
         };
@@ -27,7 +27,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
         }
     }
     __decorate([
-        RequestDecorator('https://www.open.com'),
+        RequestDecorator("https://www.open.com"),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Array]),
         __metadata("design:returntype", void 0)
