@@ -1,13 +1,7 @@
 <script setup lang="ts">
-
-// let res =  await fetch(`http://127.0.0.1:3002/articles/`).then(r=>r.json())
-// const article=ref<{title:string}>(res)
-
-// const state = ref(false);
-import useApi from '../composables/useApi'
-
-const {response}= await useApi(`http://127.0.0.1:3002/articles/`);
-
+import {all,find}  from '../apis/article'
+const {response:articles}= await all();
+const {response:article}= await find(1);
 </script>
 
 <template>
@@ -15,7 +9,8 @@ const {response}= await useApi(`http://127.0.0.1:3002/articles/`);
   <div v-if="state">
     {{article.title}}
   </div> -->
-  {{ response }}
+  <!-- {{ response?.id }} -->
+  <div v-for="article of articles" :key="article.id "></div>
 </template>
 
-
+../apis/article
